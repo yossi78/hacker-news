@@ -1,6 +1,4 @@
 package com.example.hacker_news.api;
-
-
 import com.example.hacker_news.entity.User;
 import com.example.hacker_news.exception.ResourceNotFoundException;
 import com.example.hacker_news.service.UserService;
@@ -9,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+
 
 @RestController
 @RequestMapping("/api/users")
@@ -29,9 +28,6 @@ public class UserController {
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
-
-
-
 
 
 
@@ -90,7 +86,6 @@ public class UserController {
             log.error("Failed to get user from DB ");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-
 
     }
 
