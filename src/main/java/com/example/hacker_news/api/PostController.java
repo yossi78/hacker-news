@@ -24,9 +24,9 @@ public class PostController {
 
 
     @PostMapping
-    public ResponseEntity<Post> createUser(@RequestBody Post post) {
+    public ResponseEntity<Post> createPost(@RequestBody Post post) {
         try {
-            Post savedPost = postService.createUser(post);
+            Post savedPost = postService.createPost(post);
             return new ResponseEntity<>(savedPost, HttpStatus.OK);
         } catch (Exception e) {
             log.error("Failed to save post to DB ");
@@ -37,9 +37,9 @@ public class PostController {
 
 
     @GetMapping(path = "/{postId}")
-    public ResponseEntity<Post> findUserById(@PathVariable("postId") Long postId) {
+    public ResponseEntity<Post> findPostById(@PathVariable("postId") Long postId) {
         try {
-            Post post = postService.getUser(postId);
+            Post post = postService.getPost(postId);
             return new ResponseEntity<>(post, HttpStatus.OK);
         }catch (ResourceNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -51,10 +51,10 @@ public class PostController {
 
 
     @GetMapping
-    public ResponseEntity<List<Post>> getAllUsers() {
+    public ResponseEntity<List<Post>> getAllPosts() {
         try {
-            List<Post> users = postService.getAllPosts();
-            return new ResponseEntity<>(users, HttpStatus.OK);
+            List<Post> posts = postService.getAllPosts();
+            return new ResponseEntity<>(posts, HttpStatus.OK);
         } catch (Exception e) {
             log.error("Failed to get all posts from DB", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -69,7 +69,7 @@ public class PostController {
         }catch (ResourceNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
-            log.error("Failed to get user from DB ");
+            log.error("Failed to get post from DB ");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

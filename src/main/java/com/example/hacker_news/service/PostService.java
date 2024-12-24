@@ -22,13 +22,13 @@ public class PostService {
     }
 
 
-    public Post createUser(Post post) {
+    public Post createPost(Post post) {
         return postRepository.save(post);
     }
 
 
-    public Post getUser(Long userId) {
-        Post post = checkUserExistance(userId);
+    public Post getPost(Long postId) {
+        Post post = checkPostExistance(postId);
         return post;
     }
 
@@ -45,25 +45,25 @@ public class PostService {
 
 
     public void deletePost(Long postId) {
-        checkUserExistance(postId);
+        checkPostExistance(postId);
         postRepository.deleteById(postId);
     }
 
 
-    public Post updatePost(Long userId, Post updatedPost) {
-        checkUserExistance(userId);
-        updatedPost.setId(userId);
+    public Post updatePost(Long postId, Post updatedPost) {
+        checkPostExistance(postId);
+        updatedPost.setId(postId);
         return postRepository.save(updatedPost);
     }
 
 
-    private Post checkUserExistance(Long postId){
+    private Post checkPostExistance(Long postId){
         Post post =  postRepository.findById(postId).orElse(null);
         if(post==null){
             log.error("The post has not been found , postId="+postId);
-            throw new ResourceNotFoundException("The user has not been found");
+            throw new ResourceNotFoundException("The post has not been found");
         }
-        log.info("Find user by id: " + postId);
+        log.info("Find post by id: " + postId);
         return post;
     }
 

@@ -1,12 +1,14 @@
 package com.example.hacker_news.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "posts")
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class Post {
 
     @Id
@@ -15,20 +17,5 @@ public class Post {
 
     private String content;
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 }
